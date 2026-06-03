@@ -1,0 +1,52 @@
+﻿# ==========================================
+#  docker-compose.yml — 一键启动全部服务
+# ==========================================
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: task-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: {DB_PASSWORD}
+      MYSQL_DATABASE: {DB_DATABASE}
+      MYSQL_USER: {DB_USERNAME}
+      MYSQL_PASSWORD: {DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./server
+    container_name: task-backend
+    restart: always
+    ports:
+      - "{SERVER_PORT}:{SERVER_PORT}"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME={DB_USERNAME}
+      - DB_PASSWORD={DB_PASSWORD}
+      - DB_DATABASE={DB_DATABASE}
+      - DB_TYPE=mysql
+      - PORT={SERVER_PORT}
+    volumes:
+      - uploads_data:/app/uploads
+
+  admin:
+    build: ./admin
+    container_name: task-admin
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  uploads_data:

@@ -1,0 +1,90 @@
+﻿# Dependencies
+node_modules/
+
+# Environment files (keep .env.example only)
+.env
+.env.local
+.env.production
+
+# Build outputs
+dist/
+admin/dist/
+server/dist/
+
+# Database files
+*.db
+*.db-journal
+
+# Logs
+*.log
+server-error.log
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Archives
+*.tar.gz
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary deployment scripts (root level)
+build.py
+check*.py
+d*.py
+debug*.py
+deploy*.py
+final_check.py
+fix*.py
+full.py
+gen*.py
+reinstall.py
+restart.py
+revert.py
+setup_*.py
+split.py
+test_*.py
+tmp.py
+upload.py
+_gen.py
+
+# Other temp files
+query
+preview.html
+preview-server.js
+screenshot-test.js
+config.yaml
+
+# Admin temp scripts
+admin/gen.js
+admin/gen2.js
+admin/gen3.js
+admin/shot.js
+admin/src/views/PageBuilder_template.txt
+
+# Server temp files
+server/task_platform.db
+server/server.log
+server/server-error.log
+server/.env
+server/uploads/*
+
+# Root temp scripts that slipped through
+gen.py
+config.yaml
+query
+
+
+# Admin test artifacts
+admin/ss.js
+admin/test-results/
+

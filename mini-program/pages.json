@@ -1,0 +1,85 @@
+﻿{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": { "navigationBarTitleText": "首页", "navigationStyle": "custom" }
+    },
+    {
+      "path": "pages/message/message",
+      "style": { "navigationBarTitleText": "消息" }
+    },
+    {
+      "path": "pages/order/list",
+      "style": { "navigationBarTitleText": "订单" }
+    },
+    {
+      "path": "pages/my/index",
+      "style": { "navigationBarTitleText": "我的", "navigationStyle": "custom" }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        { "path": "category/index", "style": { "navigationBarTitleText": "服务分类" } },
+        { "path": "product/list", "style": { "navigationBarTitleText": "商品列表" } },
+        { "path": "product/detail", "style": { "navigationBarTitleText": "商品详情" } },
+        { "path": "order/create", "style": { "navigationBarTitleText": "确认下单" } },
+        { "path": "order/detail", "style": { "navigationBarTitleText": "订单详情" } },
+        { "path": "order/pay", "style": { "navigationBarTitleText": "支付订单" } },
+        { "path": "chat/session", "style": { "navigationBarTitleText": "消息" } },
+        { "path": "chat/room", "style": { "navigationBarTitleText": "聊天" } },
+        { "path": "employee/auth", "style": { "navigationBarTitleText": "员工认证" } },
+        { "path": "employee/task-pool", "style": { "navigationBarTitleText": "任务池" } },
+        { "path": "my/employee-center", "style": { "navigationBarTitleText": "接单中心" } },
+        { "path": "my/refund-list", "style": { "navigationBarTitleText": "退款记录" } },
+        { "path": "my/settings", "style": { "navigationBarTitleText": "设置" } },
+        { "path": "my/about", "style": { "navigationBarTitleText": "关于我们" } }
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["subpkg"]
+    }
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2979FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "static/icons/msg.png",
+        "selectedIconPath": "static/icons/msg-active.png"
+      },
+      {
+        "pagePath": "pages/order/list",
+        "text": "订单",
+        "iconPath": "static/icons/order.png",
+        "selectedIconPath": "static/icons/order-active.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "static/icons/my.png",
+        "selectedIconPath": "static/icons/my-active.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "{CLIENT_NAME}",
+    "navigationBarBackgroundColor": "#2979FF",
+    "backgroundColor": "#F5F6FA"
+  }
+}

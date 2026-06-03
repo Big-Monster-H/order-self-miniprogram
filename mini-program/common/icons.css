@@ -1,0 +1,18 @@
+﻿/* ============================================
+   自主接单平台 - Remix Icon 辅助样式
+   基于 Remix Icon v4.6 (npm: remixicon)
+   https://remixicon.com
+   ============================================ */
+
+/* 图标尺寸辅助 */
+.ri-sm  { font-size: 32rpx; }
+.ri-lg  { font-size: 48rpx; }
+.ri-xl  { font-size: 64rpx; }
+.ri-xxl { font-size: 80rpx; }
+
+/* 颜色辅助 */
+.ri-primary  { color: var(--primary, #2979FF); }
+.ri-success  { color: var(--success, #00C853); }
+.ri-warning  { color: var(--warning, #FF9100); }
+.ri-danger   { color: var(--danger, #FF3D00); }
+.ri-muted    { color: var(--text-light, #999999); }

@@ -1,0 +1,19 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# TypeScript
+*.ts text eol=lf
+*.tsx text eol=lf
+
+# JavaScript
+*.js text eol=lf
+*.jsx text eol=lf
+
+# JSON / Config
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+
+# Vue
+*.vue text eol=lf
