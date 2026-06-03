@@ -128,6 +128,17 @@ export class OrderService {
     return this.findOne(orderId);
   }
 
+  async findUserOrder(orderId: number, userId: number) {
+    const order = await this.orderRepo.findOne({
+      where: { id: orderId }, relations: ["product", "product.category", "user", "logs"] as any,
+    });
+    if (!order) throw new NotFoundException("订单不存在");
+    if (order.user_id !== userId && order.employee_id !== userId) {
+      throw new NotFoundException("订单不存在");
+    }
+    return order;
+  }
+
   private genNo(): string {
     const d = new Date().toISOString().slice(0, 10).replace(/-/g, "");
     return d + uuid().replace(/-/g, "").slice(0, 16).toUpperCase();

@@ -1,4 +1,7 @@
-import { Module } from '@nestjs/common';
+﻿import { Module } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from './config/config.module';
 import { databaseConfig } from './config/database.config';
@@ -18,6 +21,10 @@ import { CmsModule } from './modules/cms/cms.module';
 
 @Module({
   imports: [
+    // 全局限流: 每IP每分钟100次请求
+    ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
+    // 缓存模块 (内存缓存, 生产环境替换为 Redis)
+    CacheModule.register({ isGlobal: true, ttl: 60000, max: 200 }),
     // TypeORM 数据库连接
     TypeOrmModule.forRootAsync(databaseConfig),
     // 配置模块
@@ -37,5 +44,9 @@ import { CmsModule } from './modules/cms/cms.module';
     CmsModule,
     PageConfigModule,
   ],
+  providers: [
+    { provide: APP_GUARD, useClass: ThrottlerGuard },
+  ],
 })
 export class AppModule {}
+

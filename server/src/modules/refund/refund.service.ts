@@ -20,6 +20,10 @@ export class RefundService {
   }
 
   async apply(userId: number, orderId: number, reason: string, images?: string[]) {
+    // 幂等检查：同一订单已有退款申请则拒绝
+    const existing = await this.repo.findOne({ where: { order_id: orderId } });
+    if (existing) throw new BadRequestException("该订单已提交退款申请，请勿重复申请");
+    
     const order = await this.orderRepo.findOne({ where: { id: orderId, user_id: userId } });
     if (!order) throw new NotFoundException("订单不存在");
     if ([OrderStatus.COMPLETED, OrderStatus.REFUNDING, OrderStatus.REFUNDED].includes(order.status)) {
@@ -85,3 +89,4 @@ export class RefundService {
     return refund;
   }
 }
+

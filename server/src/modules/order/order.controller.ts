@@ -43,9 +43,18 @@ export class OrderController {
     return this.service.findTaskPool(query.category_id, query.page, query.pageSize);
   }
 
-  @Get(":id")
-  detail(@Param("id") id: string) {
+  // 管理员: 订单详情
+  @Get("admin/:id")
+  @UseGuards(AdminAuthGuard)
+  adminDetail(@Param("id") id: string) {
     return this.service.findOne(+id);
+  }
+
+  // 用户/员工: 订单详情（验证所有权）
+  @Get(":id")
+  @UseGuards(JwtAuthGuard)
+  detail(@Param("id") id: string, @CurrentUser() user: any) {
+    return this.service.findUserOrder(+id, user.id);
   }
 
   @Post(":id/accept")
@@ -66,3 +75,4 @@ export class OrderController {
     return this.service.updateStatus(+id, body.status as any);
   }
 }
+
