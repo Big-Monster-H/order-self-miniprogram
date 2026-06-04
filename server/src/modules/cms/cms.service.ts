@@ -1,4 +1,17 @@
 ﻿import { Injectable, NotFoundException } from "@nestjs/common";
+
+function sanitizeHtml(html: string): string {
+  if (!html) return '';
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+    .replace(/<object[\s\S]*?<\/object>/gi, '')
+    .replace(/<embed[\s\S]*?>/gi, '')
+    .replace(/on\w+\s*=\s*"[^"]*"/gi, '')
+    .replace(/on\w+\s*=\s*'[^']*'/gi, '')
+    .replace(/<a\s+href\s*=\s*"javascript:[^"]*"[^>]*>/gi, '<a>')
+    .replace(/<a\s+href\s*=\s*'javascript:[^']*'[^>]*>/gi, '<a>');
+}
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CmsArticle } from "./cms-article.entity";
@@ -42,7 +55,7 @@ export class CmsService {
     const article = this.repo.create({
       title: data.title,
       type: data.type || "notice",
-      content: data.content || "",
+      content: sanitizeHtml(data.content || ""),
       cover: data.cover || "",
       summary: data.summary || "",
       link: data.link || "",

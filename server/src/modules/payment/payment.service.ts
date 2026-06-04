@@ -93,24 +93,29 @@ export class PaymentService {
     if (result.return_code === 'SUCCESS' && result.result_code === 'SUCCESS') {
       const orderNo = result.out_trade_no;
       const order = await this.orderRepo.findOne({ where: { order_no: orderNo } });
-      if (order) {
-        order.status = OrderStatus.PAID;
-        order.paid_at = new Date();
-        order.wx_transaction_id = result.transaction_id;
-        await this.orderRepo.save(order);
+      if (!order) return this.toXml({ return_code: 'FAIL', return_msg: '订单不存在' });
 
-        // 更新交易记录
-        await this.txRepo.update(
-          { transaction_no: orderNo },
-          {
-            status: TransactionStatus.SUCCESS,
-            third_party_no: result.transaction_id,
-            raw_data: result,
-          },
-        );
-
-        // TODO: 发送微信模板消息通知
+      // 幂等：已支付则直接返回成功
+      if (order.status === OrderStatus.PAID) {
+        return this.toXml({ return_code: 'SUCCESS', return_msg: 'OK' });
       }
+
+      order.status = OrderStatus.PAID;
+      order.paid_at = new Date();
+      order.wx_transaction_id = result.transaction_id;
+      await this.orderRepo.save(order);
+
+      // 更新交易记录
+      await this.txRepo.update(
+        { transaction_no: orderNo },
+        {
+          status: TransactionStatus.SUCCESS,
+          third_party_no: result.transaction_id,
+          raw_data: result,
+        },
+      );
+
+      // TODO: 发送微信模板消息通知
     }
 
     return this.toXml({ return_code: 'SUCCESS', return_msg: 'OK' });

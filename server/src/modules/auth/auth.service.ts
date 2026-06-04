@@ -33,10 +33,9 @@ export class AuthService {
 
     let user = await this.userRepo.findOne({ where: { openid } });
     if (!user) {
-      user = this.userRepo.create({ openid, unionid: unionid || '', nickname: nickname || '微信用户', avatar: avatar || '', session_key });
+      user = this.userRepo.create({ openid, unionid: unionid || '', nickname: nickname || '微信用户', avatar: avatar || '' });
       await this.userRepo.save(user);
     } else {
-      user.session_key = session_key;
       if (nickname) user.nickname = nickname;
       if (avatar) user.avatar = avatar;
       await this.userRepo.save(user);
@@ -55,12 +54,12 @@ export class AuthService {
     admin.last_login_at = new Date();
     await this.adminRepo.save(admin);
 
-    const token = this.jwtService.sign({ sub: admin.id, username: admin.username, role: admin.role, admin: true });
+    const token = this.jwtService.sign({ sub: admin.id, username: admin.username, role: admin.role, admin: true }, { expiresIn: '7d' });
     return { token, admin: { id: admin.id, username: admin.username, display_name: admin.display_name, role: admin.role } };
   }
 
   private generateToken(user: User): string {
-    return this.jwtService.sign({ sub: user.id, openid: user.openid, role: user.role });
+    return this.jwtService.sign({ sub: user.id, openid: user.openid, role: user.role }, { expiresIn: '30d' });
   }
 
   private sanitizeUser(user: User) {
