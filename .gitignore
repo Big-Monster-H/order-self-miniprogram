@@ -98,3 +98,5 @@ deploy_step4.py
 deploy_v2.py
 build.py
 config.yaml
+
+*.pptx
