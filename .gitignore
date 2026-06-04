@@ -88,3 +88,13 @@ query
 admin/ss.js
 admin/test-results/
 
+deploy_admin.py
+deploy_fix.py
+deploy_fix2.py
+deploy_src.py
+deploy_step2.py
+deploy_step3.py
+deploy_step4.py
+deploy_v2.py
+build.py
+config.yaml
