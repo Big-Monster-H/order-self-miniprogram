@@ -139,11 +139,9 @@ const onGetPhone = async (e) => {
     });
     const phone = phoneRes.data.phone;
 
-    // 2. 微信登录
+    // 2. 微信登录（getUserInfo已废弃，使用wx.login获取openid）
     const loginRes = await uni.login();
-    const code = loginRes.code;
-    const infoRes = await uni.getUserInfo({ withCredentials: true });
-    await authStore.wxLogin(code, infoRes.userInfo.nickName, infoRes.userInfo.avatarUrl);
+    await authStore.wxLogin(loginRes.code, '', '');
 
     // 3. 绑定手机号
     await authStore.updateProfile({ phone });

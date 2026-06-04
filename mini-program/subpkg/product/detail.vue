@@ -208,7 +208,7 @@ const goChat = () => {
   font-size: 22rpx;
   padding: 6rpx 18rpx;
   border-radius: 20rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(10rpx);
 }
 
 /* 价格卡片 */
@@ -517,7 +517,7 @@ const goChat = () => {
   display: flex;
   align-items: flex-end;
   z-index: 200;
-  backdrop-filter: blur(4rpx);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(4rpx);
 }
 .spec-panel {
   width: 100%;

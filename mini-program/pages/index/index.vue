@@ -263,7 +263,7 @@ const goEmployeeList = () => uni.showToast({ title: '更多能手', icon: 'none'
   border-radius: 34rpx;
   padding: 0 28rpx;
   gap: 12rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(10rpx);
 }
 .search-placeholder {
   color: rgba(255,255,255,0.65);

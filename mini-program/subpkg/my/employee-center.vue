@@ -125,7 +125,7 @@ const fmtPrice = (fen) => (fen / 100).toFixed(0);
 .ec-stats {
   position: relative; z-index: 1;
   display: flex; background: rgba(255,255,255,.12); border-radius: 16rpx; padding: 20rpx 8rpx;
-  backdrop-filter: blur(10rpx);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(10rpx);
 }
 .ecs-item { flex: 1; text-align: center; }
 .ecs-val { font-size: 36rpx; font-weight: 700; color: #fff; display: block; }
