@@ -35,10 +35,27 @@ const router = createRouter({
   routes,
 })
 
+// 角色等级: super_admin > admin > editor
+const ROLE_LEVEL = { super_admin: 3, admin: 2, editor: 1 }
+
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('admin_token')
-  if (!to.meta.noAuth && !token) next('/login')
-  else next()
+  const info = JSON.parse(localStorage.getItem('admin_info') || '{}')
+
+  // 未登录
+  if (!to.meta.noAuth && !token) return next('/login')
+  // 已登录访问登录页
+  if (to.meta.noAuth && token) return next('/dashboard')
+
+  // 角色权限检查
+  const requiredRole = to.meta.role || 'editor'
+  const userRole = info.role || 'editor'
+  if ((ROLE_LEVEL[userRole] || 0) < (ROLE_LEVEL[requiredRole] || 0)) {
+    console.warn('权限不足, 需 ' + requiredRole)
+    return next('/dashboard')
+  }
+
+  next()
 })
 
 export default router

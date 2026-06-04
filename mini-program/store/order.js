@@ -3,14 +3,26 @@ import { api } from "@/api/request.js";
 
 export const useOrderStore = defineStore("order", {
   state: () => ({
-    myOrders: { list: [], total: 0 },
+    myOrders: { list: [], total: 0, page: 1, pageSize: 10 },
     taskPool: { list: [], total: 0 },
     employeeOrders: { list: [], total: 0 },
     currentOrder: null,
   }),
   actions: {
-    async fetchMyOrders(status) {
-      this.myOrders = await api.get("/orders/my", { status });
+    async fetchMyOrders(status, append = false) {
+      if (!append) this.myOrders.page = 1;
+      const { page, pageSize } = this.myOrders;
+      const res = await api.get("/orders/my", { status: status || undefined, page, pageSize });
+      if (append) {
+        this.myOrders.list = [...this.myOrders.list, ...(res.list || [])];
+        this.myOrders.total = res.total;
+      } else {
+        this.myOrders = { list: res.list || [], total: res.total, page, pageSize };
+      }
+    },
+    async loadMoreOrders(status) {
+      this.myOrders.page++;
+      await this.fetchMyOrders(status, true);
     },
     async createOrder(data) {
       const order = await api.post("/orders", data);

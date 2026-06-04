@@ -9,6 +9,7 @@
   <div class="form-row">
     <div class="form-group"><label class="form-label">价格(元)</label><input class="form-input" type="number" step="0.01" :value="(form.price/100).toFixed(2)" @input="form.price=Math.round($event.target.value*100)" /></div>
     <div class="form-group"><label class="form-label">原价(元)</label><input class="form-input" type="number" step="0.01" :value="(form.original_price/100).toFixed(2)" @input="form.original_price=Math.round($event.target.value*100)" /></div>
+    <div class="form-group"><label class="form-label">库存(-1=无限)</label><input class="form-input" type="number" v-model.number="form.stock" /></div>
   </div>
   <div class="form-group"><label class="form-label">描述</label><textarea class="form-input" v-model="form.description" rows="3"></textarea></div>
   <div class="form-row">
@@ -28,7 +29,7 @@ const route=useRoute()
 const isEdit=!!route.params.id
 const saving=ref(false)
 const categories=ref([])
-const form=ref({title:'',category_id:null,price:0,original_price:0,description:'',delivery_days:'',sort:0,status:1})
+const form=ref({title:'',category_id:null,price:0,original_price:0,stock:-1,description:'',delivery_days:'',sort:0,status:1})
 onMounted(async()=>{
   categories.value=await api.get('/categories')
   if(isEdit){const p=await api.get('/products/'+route.params.id);form.value={...p}}

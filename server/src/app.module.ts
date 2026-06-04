@@ -18,6 +18,7 @@ import { UploadModule } from './modules/upload/upload.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { PageConfigModule } from './modules/page-config/page-config.module';
 import { CmsModule } from './modules/cms/cms.module';
+import { SettlementModule } from './modules/settlement/settlement.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { CmsModule } from './modules/cms/cms.module';
     UploadModule,
     AdminModule,
     CmsModule,
+    SettlementModule,
     PageConfigModule,
   ],
   providers: [

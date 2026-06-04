@@ -13,6 +13,7 @@ export class Product {
   @Column() price: number;
   @Column({ default: 0 }) original_price: number;
   @Column({ default: 0 }) sold_count: number;
+  @Column({ default: -1 }) stock: number; // -1=无限库存, >=0=剩余库存
   @Column({ nullable: true }) delivery_days: string;
   @Column({ type: 'simple-json', nullable: true }) tags: string[];
   @Column({ default: 1 }) status: number;

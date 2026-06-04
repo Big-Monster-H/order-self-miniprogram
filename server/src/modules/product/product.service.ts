@@ -53,6 +53,7 @@ export class ProductService {
       original_price: data.original_price || 0,
       delivery_days: data.delivery_days || "",
       tags: data.tags || [],
+      stock: data.stock ?? -1,
       status: data.status ?? 1,
       sort: data.sort || 0,
     });

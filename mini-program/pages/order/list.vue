@@ -68,11 +68,16 @@ const switchTab = async (key) => {
   await loadOrders();
 };
 
-const loadOrders = async () => {
+const loadOrders = async (append = false) => {
   try {
-    await orderStore.fetchMyOrders(activeTab.value || undefined);
+    await orderStore.fetchMyOrders(activeTab.value || undefined, append);
     orders.value = orderStore.myOrders.list || [];
   } catch (e) { console.log(e); }
+};
+
+const loadMore = async () => {
+  if (orderStore.myOrders.list.length >= orderStore.myOrders.total) return;
+  await loadOrders(true);
 };
 
 onShow(() => loadOrders());

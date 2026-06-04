@@ -31,6 +31,7 @@ export class RefundController {
 
   // 详情
   @Get(":id")
+  @UseGuards(AdminAuthGuard)
   detail(@Param("id") id: string) {
     return this.service.findOne(+id);
   }
@@ -49,3 +50,4 @@ export class RefundController {
     return this.service.reject(+id, admin.id, body.remark);
   }
 }
+

@@ -33,12 +33,25 @@ export class OrderService {
   }
 
   async create(userId: number, dto: { product_id: number; quantity: number; remark?: string }) {
-    const product = await this.productRepo.findOne({ where: { id: dto.product_id } });
+    // 悲观锁查询商品，防止超卖
+    const product = await this.productRepo.findOne({
+      where: { id: dto.product_id },
+      lock: { mode: 'pessimistic_write' },
+    });
     if (!product || product.status !== 1) throw new NotFoundException("商品不存在或已下架");
     const qty = dto.quantity || 1;
+    // 库存校验（-1=无限库存）
+    if (product.stock !== -1 && product.stock < qty) {
+      throw new BadRequestException("库存不足");
+    }
     const total = product.price * qty;
     const commission = Math.floor(total * 8 / 100);
     const no = this.genNo();
+    // 扣减库存
+    if (product.stock !== -1) {
+      product.stock -= qty;
+      await this.productRepo.save(product);
+    }
     const data: any = {
       order_no: no, user_id: userId, product_id: product.id, quantity: qty,
       unit_price: product.price, total_amount: total, commission,
@@ -123,6 +136,16 @@ export class OrderService {
   }
 
   async updateStatus(orderId: number, status: OrderStatus) {
+    const order = await this.orderRepo.findOne({ where: { id: orderId }, relations: ["product"] as any });
+    if (!order) throw new NotFoundException("订单不存在");
+    // 取消/退款时恢复库存
+    if ([OrderStatus.CANCELLED, OrderStatus.REFUNDED].includes(status)) {
+      const product = order.product as any;
+      if (product && product.stock !== -1) {
+        product.stock += order.quantity;
+        await this.productRepo.save(product);
+      }
+    }
     await this.orderRepo.update(orderId, { status } as any);
     await this.logRepo.save({ order_id: orderId, action: "status_change", description: "状态变更为: " + status });
     return this.findOne(orderId);
