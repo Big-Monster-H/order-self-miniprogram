@@ -100,6 +100,12 @@ export class PaymentService {
         return this.toXml({ return_code: 'SUCCESS', return_msg: 'OK' });
       }
 
+      // 金额校验：回调金额必须与订单金额一致
+      const notifyFee = parseInt(result.total_fee) || 0;
+      if (notifyFee !== order.total_amount) {
+        return this.toXml({ return_code: 'FAIL', return_msg: '金额不匹配' });
+      }
+
       order.status = OrderStatus.PAID;
       order.paid_at = new Date();
       order.wx_transaction_id = result.transaction_id;
