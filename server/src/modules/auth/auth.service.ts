@@ -58,6 +58,34 @@ export class AuthService {
     return { token, admin: { id: admin.id, username: admin.username, display_name: admin.display_name, role: admin.role } };
   }
 
+  /** 微信一键获取手机号（新版API） */
+  async getPhoneNumber(code: string): Promise<{ phone: string }> {
+    const wxConfig = {
+      appId: process.env.WX_APPID || '',
+      secret: process.env.WX_SECRET || '',
+    };
+
+    // 1. 获取 access_token
+    const tokenRes = await axios.get('https://api.weixin.qq.com/cgi-bin/token', {
+      params: { grant_type: 'client_credential', appid: wxConfig.appId, secret: wxConfig.secret },
+    });
+    if (tokenRes.data.errcode) {
+      throw new UnauthorizedException('获取微信token失败: ' + tokenRes.data.errmsg);
+    }
+    const accessToken = tokenRes.data.access_token;
+
+    // 2. 用 code 换取手机号
+    const phoneRes = await axios.post(
+      `https://api.weixin.qq.com/wxa/business/getuserphonenumber?access_token=${accessToken}`,
+      { code }
+    );
+    if (phoneRes.data.errcode !== 0) {
+      throw new UnauthorizedException('获取手机号失败: ' + phoneRes.data.errmsg);
+    }
+
+    return { phone: phoneRes.data.phone_info.purePhoneNumber };
+  }
+
   private generateToken(user: User): string {
     return this.jwtService.sign({ sub: user.id, openid: user.openid, role: user.role }, { expiresIn: '30d' });
   }

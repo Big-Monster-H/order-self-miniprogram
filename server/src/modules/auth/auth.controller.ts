@@ -3,6 +3,8 @@ import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
+  private accessToken: string = '';
+  private accessTokenExpire: number = 0;
   constructor(private authService: AuthService) {}
 
   @Post('wx-login')
@@ -13,5 +15,11 @@ export class AuthController {
   @Post('admin-login')
   async adminLogin(@Body() body: { username: string; password: string }) {
     return this.authService.adminLogin(body.username, body.password);
+  }
+
+  /** 微信一键获取手机号 */
+  @Post('wx-phone')
+  async wxGetPhone(@Body() body: { code: string }) {
+    return this.authService.getPhoneNumber(body.code);
   }
 }
