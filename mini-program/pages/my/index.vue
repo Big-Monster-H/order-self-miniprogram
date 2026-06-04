@@ -108,7 +108,8 @@
 </template>
 
 <script setup>
-import { ref, onShow } from 'vue';
+import { ref } from 'vue';
+import { onShow } from '@dcloudio/uni-app';
 import { useAuthStore } from '@/store/auth.js';
 import { useOrderStore } from '@/store/order.js';
 

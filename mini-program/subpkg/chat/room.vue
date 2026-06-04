@@ -26,7 +26,8 @@
 </template>
 
 <script setup>
-import { ref, onLoad, nextTick } from 'vue';
+import { ref, nextTick } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
 import { useChatStore } from '@/store/chat.js';
 import { useAuthStore } from '@/store/auth.js';
 

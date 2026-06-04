@@ -19,7 +19,8 @@
 </template>
 
 <script setup>
-import { ref, onShow } from 'vue';
+import { ref } from 'vue';
+import { onShow } from '@dcloudio/uni-app';
 import { api } from '@/api/request.js';
 
 const refunds = ref([]);

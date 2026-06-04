@@ -48,7 +48,8 @@
 </template>
 
 <script setup>
-import { ref, onShow } from 'vue';
+import { ref } from 'vue';
+import { onShow } from '@dcloudio/uni-app';
 import { useOrderStore } from '@/store/order.js';
 
 const orderStore = useOrderStore();
