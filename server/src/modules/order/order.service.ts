@@ -1,4 +1,6 @@
-﻿import { Injectable, NotFoundException, BadRequestException } from "@nestjs/common";
+﻿import { Injectable } from "@nestjs/common";
+import { BizException } from "../../common/exceptions/biz.exception";
+import { ErrorCode } from "../../common/exceptions/error-codes";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Order, OrderStatus } from "./order.entity";
@@ -38,11 +40,11 @@ export class OrderService {
       where: { id: dto.product_id },
       lock: { mode: 'pessimistic_write' },
     });
-    if (!product || product.status !== 1) throw new NotFoundException("商品不存在或已下架");
+    if (!product || product.status !== 1) throw new BizException(ErrorCode.PRODUCT_OFFLINE);
     const qty = dto.quantity || 1;
     // 库存校验（-1=无限库存）
     if (product.stock !== -1 && product.stock < qty) {
-      throw new BadRequestException("库存不足");
+      throw new BizException(ErrorCode.ORDER_STOCK_OUT);
     }
     const total = product.price * qty;
     const commission = Math.floor(total * 8 / 100);
@@ -66,7 +68,7 @@ export class OrderService {
     const order = await this.orderRepo.findOne({
       where: { id }, relations: ["product", "product.category", "user", "logs"] as any,
     });
-    if (!order) throw new NotFoundException("订单不存在");
+    if (!order) throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     return order;
   }
 
@@ -103,9 +105,9 @@ export class OrderService {
 
   async acceptOrder(orderId: number, employeeId: number) {
     const order = await this.orderRepo.findOne({ where: { id: orderId } });
-    if (!order) throw new NotFoundException("订单不存在");
+    if (!order) throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     if (order.status !== OrderStatus.PAID || order.employee_id)
-      throw new BadRequestException("该订单已被抢或不可接单");
+      throw new BizException(ErrorCode.ORDER_STATUS_ERR, 400);
     order.employee_id = employeeId;
     order.status = OrderStatus.ACCEPTED;
     order.accepted_at = new Date();
@@ -116,9 +118,9 @@ export class OrderService {
 
   async completeOrder(orderId: number, userId: number) {
     const order = await this.orderRepo.findOne({ where: { id: orderId, user_id: userId } });
-    if (!order) throw new NotFoundException("订单不存在");
+    if (!order) throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     if (order.status !== OrderStatus.DELIVERING && order.status !== OrderStatus.ACCEPTED)
-      throw new BadRequestException("订单状态不允许完成");
+      throw new BizException(ErrorCode.ORDER_STATUS_ERR, 400);
     order.status = OrderStatus.COMPLETED;
     order.completed_at = new Date();
     await this.orderRepo.save(order as any);
@@ -137,7 +139,7 @@ export class OrderService {
 
   async updateStatus(orderId: number, status: OrderStatus) {
     const order = await this.orderRepo.findOne({ where: { id: orderId }, relations: ["product"] as any });
-    if (!order) throw new NotFoundException("订单不存在");
+    if (!order) throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     // 取消/退款时恢复库存
     if ([OrderStatus.CANCELLED, OrderStatus.REFUNDED].includes(status)) {
       const product = order.product as any;
@@ -155,9 +157,9 @@ export class OrderService {
     const order = await this.orderRepo.findOne({
       where: { id: orderId }, relations: ["product", "product.category", "user", "logs"] as any,
     });
-    if (!order) throw new NotFoundException("订单不存在");
+    if (!order) throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     if (order.user_id !== userId && order.employee_id !== userId) {
-      throw new NotFoundException("订单不存在");
+      throw new BizException(ErrorCode.ORDER_NOT_FOUND);
     }
     return order;
   }
