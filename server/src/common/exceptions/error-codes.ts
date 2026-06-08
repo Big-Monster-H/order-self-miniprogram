@@ -1,4 +1,4 @@
-﻿/** 统一错误码 */
+/** 统一错误码 */
 export const ErrorCode = {
   // 通用
   SUCCESS:            { code: 0,     msg: '成功' },

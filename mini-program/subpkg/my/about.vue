@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-about">
     <view class="logo-area card">
       <image class="logo" src="/static/icons/logo.png" mode="aspectFit" />

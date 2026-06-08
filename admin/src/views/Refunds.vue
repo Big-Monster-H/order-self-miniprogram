@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>退款审核</h2></div>
 <div class="card">
   <table class="table"><thead><tr><th>编号</th><th>订单</th><th>金额</th><th>原因</th><th>状态</th><th>操作</th></tr></thead>

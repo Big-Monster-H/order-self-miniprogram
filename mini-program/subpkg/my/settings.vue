@@ -36,6 +36,12 @@
 </template>
 
 <script setup>
+const notifyEnabled = ref(true);
+const editProfile = () => uni.showToast({ title: "编辑资料", icon: "none" });
+const goAddress = () => uni.showToast({ title: "地址管理", icon: "none" });
+const goPrivacy = () => uni.showToast({ title: "隐私政策", icon: "none" });
+const goAbout = () => uni.navigateTo({ url: "/subpkg/my/about" });
+const goAgreement = () => uni.showToast({ title: "用户协议", icon: "none" });
 import { ref } from 'vue';
 import { useAuthStore } from '@/store/auth.js';
 

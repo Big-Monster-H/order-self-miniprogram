@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>仪表盘</h2></div>
 <div class="stat-cards">
   <div class="stat-card"><div class="stat-icon" style="background:#E3F2FD;color:#1565C0"><i class="ri-user-3-line"></i></div><div><div class="stat-val">{{stats.users}}</div><div class="stat-lbl">用户总数</div></div></div>

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-auth">
     <!-- 步骤指示器 -->
     <view class="steps-wrap">
@@ -168,6 +168,12 @@
 </template>
 
 <script setup>
+const authStatus = () => uni.showToast({ title: "认证状态查询", icon: "none" });
+const currentStep = () => uni.showToast({ title: "步骤切换", icon: "none" });
+const getSmsCode = () => uni.showToast({ title: "验证码已发送", icon: "success" });
+const goTaskPool = () => uni.navigateTo({ url: "/subpkg/employee/task-pool" });
+const toggleSkill = (skill) => { console.log("toggle skill:", skill); };
+const uploadCert = (type) => uni.chooseImage({ count: 1, success: (res) => console.log("upload cert", type, res) });
 import { ref } from 'vue';
 import { useEmployeeStore } from '@/store/employee.js';
 import { useAuthStore } from '@/store/auth.js';

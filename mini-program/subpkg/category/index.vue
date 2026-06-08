@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-category">
     <!-- 左侧一级分类 -->
     <scroll-view scroll-y class="sidebar">
@@ -55,6 +55,10 @@
 </template>
 
 <script setup>
+const products = ref([]);
+const goDetail = (item) => uni.navigateTo({ url: "/subpkg/product/list?categoryId=" + (item?.id || "") });
+const selectSub = (sub) => uni.navigateTo({ url: "/subpkg/product/list?subCategoryId=" + (sub?.id || "") });
+const switchCategory = (cat) => uni.navigateTo({ url: "/subpkg/product/list?categoryId=" + (cat?.id || "") });
 import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { useCategoryStore } from '@/store/category.js';

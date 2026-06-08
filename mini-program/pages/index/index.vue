@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-index">
     <!-- 自定义导航栏 -->
     <view class="nav-bar" :style="{ paddingTop: statusBarHeight + 'px' }">
@@ -218,6 +218,7 @@ const goProductList = (cat) => {
   uni.navigateTo({ url: '/subpkg/product/list' + query });
 };
 const goProductDetail = (product) => uni.navigateTo({ url: '/subpkg/product/detail?id=' + product.id });
+const switchCity = () => uni.showToast({ title: "切换城市开发中", icon: "none" });
 const goEmployeeList = () => uni.showToast({ title: '更多能手', icon: 'none' });
 </script>
 

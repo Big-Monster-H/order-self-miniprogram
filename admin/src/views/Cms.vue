@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>CMS 内容管理</h2><router-link to="/cms/edit" class="btn btn-primary"><i class="ri-add-line"></i> 新增内容</router-link></div>
 <div class="card">
   <table class="table"><thead><tr><th>ID</th><th>标题</th><th>类型</th><th>浏览量</th><th>状态</th><th>操作</th></tr></thead>

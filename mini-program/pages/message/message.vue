@@ -1,19 +1,19 @@
 <template>
   <view class="page-message">
-    <view class="msg-item" v-for="m in list" :key="m.id" @click="onTap(m)">
-      <view class="msg-ri-wrap" :style="{ background: m.iconBg }">
-        <view :class="'ri-' + m.icon" style="font-size:36rpx;" />
+    <view class="msg-item" v-for="s in sessions" :key="s.id" @click="goRoom(s)">
+      <view class="msg-ri-wrap" :style="{ background: s.iconBg }">
+        <view :class="'ri-' + s.icon" style="font-size:36rpx;" />
       </view>
       <view class="msg-info">
         <view class="msg-top">
-          <text class="msg-title">{{ m.title }}</text>
-          <text class="msg-time">{{ m.time }}</text>
+          <text class="msg-title">{{ s.title }}</text>
+          <text class="msg-time">{{ s.time }}</text>
         </view>
-        <text class="msg-desc text-ellipsis">{{ m.desc }}</text>
+        <text class="msg-desc text-ellipsis">{{ s.desc }}</text>
       </view>
-      <view class="msg-dot" v-if="!m.read" />
+      <view class="msg-dot" v-if="!s.read" />
     </view>
-    <view v-if="!list.length" class="empty">暂无消息</view>
+    <view v-if="!sessions.length" class="empty">暂无消息</view>
   </view>
 </template>
 

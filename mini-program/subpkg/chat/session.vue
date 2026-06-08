@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-session-list">
     <view class="session-item" v-for="s in sessions" :key="s.id" @click="goRoom(s)">
       <view class="avatar-wrap">

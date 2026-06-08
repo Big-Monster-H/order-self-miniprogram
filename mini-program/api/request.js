@@ -1,5 +1,5 @@
-﻿// API 请求封装 — 对接 NestJS 后端
-const BASE_URL = "{API_BASE_URL}";
+// API 请求封装 — 对接 NestJS 后端
+const BASE_URL = "http://139.155.139.83:3001";
 
 const request = (options) => {
   const token = uni.getStorageSync("token");

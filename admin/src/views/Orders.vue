@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>订单管理</h2></div>
 <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
   <button v-for="t in tabs" :key="t.key" @click="filterBy(t.key)" :class="'btn '+(activeTab===t.key?'btn-primary':'btn-outline')+' btn-sm'">{{t.label}}</button>

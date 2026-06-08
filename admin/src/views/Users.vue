@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>用户管理</h2></div>
 <div class="card">
   <table class="table"><thead><tr><th>ID</th><th>昵称</th><th>手机号</th><th>角色</th><th>注册时间</th></tr></thead>

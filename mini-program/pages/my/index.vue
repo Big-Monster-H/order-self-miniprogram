@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-my">
     <!-- 头部 -->
     <view class="header" :style="{ paddingTop: statusBarHeight + 30 + 'px' }">

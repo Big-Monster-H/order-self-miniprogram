@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-create">
     <!-- 商品摘要 -->
     <view class="goods-card">
@@ -74,6 +74,9 @@
 </template>
 
 <script setup>
+const showDate = () => uni.showToast({ title: "选择日期", icon: "none" });
+const chooseAddress = () => uni.showToast({ title: "选择地址", icon: "none" });
+const agreed = () => uni.showToast({ title: "已同意协议", icon: "success" });
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { useProductStore } from '@/store/product.js';

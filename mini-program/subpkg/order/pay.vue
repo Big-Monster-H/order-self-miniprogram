@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+const toPay = () => { uni.showToast({ title: "调起支付", icon: "none" }); };
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { useOrderStore } from '@/store/order.js';

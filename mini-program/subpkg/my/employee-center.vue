@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-ec">
     <!-- 头部数据 -->
     <view class="ec-header">
@@ -82,6 +82,8 @@
 </template>
 
 <script setup>
+const go = (url) => uni.navigateTo({ url });
+const todos = ref([]);
 import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { useEmployeeStore } from '@/store/employee.js';

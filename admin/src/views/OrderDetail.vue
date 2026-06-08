@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>订单详情</h2><button class="btn btn-outline btn-sm" @click="$router.push('/orders')"><i class="ri-arrow-left-line"></i> 返回</button></div>
 <div v-if="order" class="detail-wrap">
   <div class="card" style="margin-bottom:16px">

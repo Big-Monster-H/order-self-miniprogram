@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>商品管理</h2><router-link to="/products/edit" class="btn btn-primary"><i class="ri-add-line"></i> 新增商品</router-link></div>
 <div class="card">
   <table class="table"><thead><tr><th>ID</th><th>标题</th><th>分类</th><th>价格</th><th>销量</th><th>状态</th><th>操作</th></tr></thead>

@@ -1,4 +1,4 @@
-﻿import { Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PageConfig } from "./page-config.entity";
 import { PageConfigService } from "./page-config.service";

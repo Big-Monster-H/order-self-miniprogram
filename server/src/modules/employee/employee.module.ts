@@ -1,4 +1,4 @@
-﻿import { Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { EmployeeProfile } from "./employee-profile.entity";
 import { User } from "../user/user.entity";

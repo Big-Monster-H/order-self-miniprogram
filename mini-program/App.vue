@@ -31,7 +31,7 @@ const tryAutoLogin = async () => {
 </script>
 
 <style lang="scss">
-@import "remixicon/fonts/remixicon.css";
+@import "@/static/fonts/remixicon-trimmed.css";
 
 page {
   --primary: #2979FF;

@@ -1,0 +1,59 @@
+/* Trimmed Remixicon - CDN woff2 + only used icons */
+@font-face {
+  font-family: "remixicon";
+  src:url('/static/fonts/remixicon.woff2') format('woff2'); /* IE9*/
+  src:url('/static/fonts/remixicon.woff2') format('woff2'); /* iOS 4.1- */
+  font-display: swap;
+}
+
+[class^=ri-],[class*=" ri-"]{font-family:remixicon!important;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+.ri-add-circle-line:before { content: "\ea11"; }
+.ri-alarm-line:before { content: "\ea1b"; }
+.ri-arrow-down-s-line:before { content: "\ea4e"; }
+.ri-arrow-right-line:before { content: "\ea6c"; }
+.ri-arrow-right-s-line:before { content: "\ea6e"; }
+.ri-arrow-up-down-line:before { content: "\ea74"; }
+.ri-article-line:before { content: "\ea7e"; }
+.ri-award-line:before { content: "\ea8a"; }
+.ri-bank-line:before { content: "\ea94"; }
+.ri-briefcase-4-fill:before { content: "\eaf0"; }
+.ri-briefcase-4-line:before { content: "\eaf1"; }
+.ri-calendar-2-line:before { content: "\eb21"; }
+.ri-calendar-check-line:before { content: "\eb23"; }
+.ri-chat-3-line:before { content: "\eb51"; }
+.ri-checkbox-circle-fill:before { content: "\eb80"; }
+.ri-check-line:before { content: "\eb7b"; }
+.ri-close-circle-fill:before { content: "\eb96"; }
+.ri-close-line:before { content: "\eb99"; }
+.ri-eye-2-line:before { content: "\ecb1"; }
+.ri-file-list-2-line:before { content: "\eced"; }
+.ri-funds-line:before { content: "\eda3"; }
+.ri-heart-3-fill:before { content: "\ee0a"; }
+.ri-heart-3-line:before { content: "\ee0b"; }
+.ri-id-card-line:before { content: "\f4e8"; }
+.ri-image-2-line:before { content: "\ee45"; }
+.ri-inbox-line:before { content: "\ee4f"; }
+.ri-information-line:before { content: "\ee59"; }
+.ri-lock-2-line:before { content: "\eecc"; }
+.ri-logout-box-line:before { content: "\eed8"; }
+.ri-map-pin-2-line:before { content: "\ef0a"; }
+.ri-money-cny-circle-line:before { content: "\ef61"; }
+.ri-notification-3-line:before { content: "\ef94"; }
+.ri-pencil-line:before { content: "\efe0"; }
+.ri-refresh-line:before { content: "\f064"; }
+.ri-rocket-line:before { content: "\f096"; }
+.ri-search-2-line:before { content: "\f0cd"; }
+.ri-send-plane-line:before { content: "\f0da"; }
+.ri-shield-check-line:before { content: "\f100"; }
+.ri-star-fill:before { content: "\f186"; }
+.ri-task-line:before { content: "\f1e8"; }
+.ri-thumb-up-line:before { content: "\f207"; }
+.ri-time-line:before { content: "\f20f"; }
+.ri-upload-2-line:before { content: "\f24a"; }
+.ri-user-3-fill:before { content: "\f255"; }
+.ri-user-3-line:before { content: "\f256"; }
+.ri-user-star-line:before { content: "\f276"; }
+.ri-wallet-3-line:before { content: "\f2ac"; }
+.ri-wechat-2-line:before { content: "\f2b4"; }
+

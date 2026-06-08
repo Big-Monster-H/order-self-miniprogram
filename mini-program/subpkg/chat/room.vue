@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+const chooseImg = () => uni.chooseImage({ count: 1, success: (res) => console.log(res) });
+const preview = (urls, current) => uni.previewImage({ urls, current });
 import { ref, nextTick } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { useChatStore } from '@/store/chat.js';

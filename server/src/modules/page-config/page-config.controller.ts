@@ -1,4 +1,4 @@
-﻿import { Controller, Get, Put, Param, Body, UseGuards } from "@nestjs/common";
+import { Controller, Get, Put, Param, Body, UseGuards } from "@nestjs/common";
 import { AdminAuthGuard } from "../../common/guards/admin-auth.guard";
 import { PageConfigService } from "./page-config.service";
 

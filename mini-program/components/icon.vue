@@ -24,7 +24,7 @@ const iconStyle = computed(() => {
 
 <style>
 /* Remix Icon */
-@import "remixicon/fonts/remixicon.css";
+@import "@/static/fonts/remixicon-trimmed.css";
 
 .c-icon {
   display: inline-flex;

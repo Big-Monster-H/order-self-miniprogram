@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-detail">
     <!-- 商品轮播 -->
     <view class="img-wrap">
@@ -144,6 +144,14 @@
 </template>
 
 <script setup>
+const specs = ref([]);
+const selectedSpec = ref("");
+const previewImg = (url) => uni.previewImage({ urls: [url] });
+const goOrder = () => uni.showToast({ title: "下单功能开发中", icon: "none" });
+const specVisible = () => uni.showToast({ title: "选择规格", icon: "none" });
+const selectSpec = (spec) => { console.log("selected spec:", spec); };
+const showSpec = () => uni.showToast({ title: "选择规格", icon: "none" });
+const toggleFav = () => uni.showToast({ title: "已收藏", icon: "success" });
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { useProductStore } from '@/store/product.js';

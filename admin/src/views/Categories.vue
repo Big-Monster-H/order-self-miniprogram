@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>服务分类</h2><button class="btn btn-primary" @click="showForm(null)"><i class="ri-add-line"></i> 新增分类</button></div>
 <div class="card">
   <table class="table"><thead><tr><th>ID</th><th>名称</th><th>排序</th><th>状态</th><th>操作</th></tr></thead>

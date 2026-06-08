@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-task-pool">
     <!-- 顶部统计 -->
     <view class="pool-stats">
@@ -82,6 +82,8 @@
 </template>
 
 <script setup>
+const goDetail = (task) => uni.navigateTo({ url: "/subpkg/order/detail?id=" + (task?.id || "") });
+const loadMore = () => uni.showToast({ title: "加载更多", icon: "none" });
 import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { useOrderStore } from '@/store/order.js';

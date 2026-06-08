@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-product-list">
     <!-- 筛选栏 -->
     <view class="filter-bar">

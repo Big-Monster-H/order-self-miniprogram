@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div><div class="page-hd"><h2>员工审核</h2></div>
 <div class="card">
   <table class="table"><thead><tr><th>ID</th><th>用户</th><th>技能</th><th>评分</th><th>保证金</th><th>状态</th><th>操作</th></tr></thead>

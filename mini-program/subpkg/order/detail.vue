@@ -62,6 +62,8 @@
 </template>
 
 <script setup>
+const copy = (text) => { uni.setClipboardData({ data: text || "", success: () => uni.showToast({ title: "已复制", icon: "success" }) }); };
+const onAction = (action) => { console.log("action:", action); uni.showToast({ title: "操作处理中", icon: "none" }); };
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { useOrderStore } from '@/store/order.js';

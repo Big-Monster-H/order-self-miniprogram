@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <view class="page-order-list">
     <!-- 状态Tab -->
     <view class="tabs">

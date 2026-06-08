@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 <div style="display:flex;min-height:100vh">
   <aside style="width:230px;background:#1A1A2E;color:#fff;flex-shrink:0;display:flex;flex-direction:column">
     <div style="padding:20px;font-size:17px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.08)">

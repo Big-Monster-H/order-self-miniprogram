@@ -4,10 +4,10 @@
   "description": "自主接单平台微信小程序",
   "main": "main.js",
   "scripts": {
-    "dev:mp-weixin": "uni -p mp-weixin",
-    "build:mp-weixin": "uni build -p mp-weixin",
-    "dev:h5": "uni",
-    "build:h5": "uni build"
+    "dev:mp-weixin": "npx uni -p mp-weixin",
+    "build:mp-weixin": "npx uni build -p mp-weixin",
+    "dev:h5": "npx uni",
+    "build:h5": "npx uni build"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4020920240930001",

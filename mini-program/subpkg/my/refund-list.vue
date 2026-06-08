@@ -1,6 +1,6 @@
-﻿<template>
+<template>
   <view class="page-refund">
-    <view class="refund-item card" v-for="r in list" :key="r.id" @click="goDetail(r)">
+    <view class="refund-item card" v-for="r in refunds" :key="r.id" @click="goDetail(r)">
       <view class="ri-header">
         <text class="ri-order">订单：{{ r.orderNo }}</text>
         <text class="ri-status" :style="{ color: statusColor(r.status) }">{{ r.statusText }}</text>
@@ -14,11 +14,12 @@
         <text class="ri-amount">¥{{ r.amount }}</text>
       </view>
     </view>
-    <view v-if="!list.length" class="empty">暂无退款记录</view>
+    <view v-if="!refunds.length" class="empty">暂无退款记录</view>
   </view>
 </template>
 
 <script setup>
+const goDetail = (refund) => uni.navigateTo({ url: "/subpkg/order/detail?id=" + (refund?.orderId || "") });
 import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { api } from '@/api/request.js';

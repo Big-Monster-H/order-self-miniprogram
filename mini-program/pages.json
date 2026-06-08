@@ -1,47 +1,129 @@
-﻿{
+{
   "pages": [
     {
       "path": "pages/index/index",
-      "style": { "navigationBarTitleText": "首页", "navigationStyle": "custom" }
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom"
+      }
     },
     {
       "path": "pages/message/message",
-      "style": { "navigationBarTitleText": "消息" }
+      "style": {
+        "navigationBarTitleText": "消息"
+      }
     },
     {
       "path": "pages/order/list",
-      "style": { "navigationBarTitleText": "订单" }
+      "style": {
+        "navigationBarTitleText": "订单"
+      }
     },
     {
       "path": "pages/my/index",
-      "style": { "navigationBarTitleText": "我的", "navigationStyle": "custom" }
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
     }
   ],
   "subPackages": [
     {
       "root": "subpkg",
       "pages": [
-        { "path": "category/index", "style": { "navigationBarTitleText": "服务分类" } },
-        { "path": "product/list", "style": { "navigationBarTitleText": "商品列表" } },
-        { "path": "product/detail", "style": { "navigationBarTitleText": "商品详情" } },
-        { "path": "order/create", "style": { "navigationBarTitleText": "确认下单" } },
-        { "path": "order/detail", "style": { "navigationBarTitleText": "订单详情" } },
-        { "path": "order/pay", "style": { "navigationBarTitleText": "支付订单" } },
-        { "path": "chat/session", "style": { "navigationBarTitleText": "消息" } },
-        { "path": "chat/room", "style": { "navigationBarTitleText": "聊天" } },
-        { "path": "employee/auth", "style": { "navigationBarTitleText": "员工认证" } },
-        { "path": "employee/task-pool", "style": { "navigationBarTitleText": "任务池" } },
-        { "path": "my/employee-center", "style": { "navigationBarTitleText": "接单中心" } },
-        { "path": "my/refund-list", "style": { "navigationBarTitleText": "退款记录" } },
-        { "path": "my/settings", "style": { "navigationBarTitleText": "设置" } },
-        { "path": "my/about", "style": { "navigationBarTitleText": "关于我们" } }
+        {
+          "path": "category/index",
+          "style": {
+            "navigationBarTitleText": "服务分类"
+          }
+        },
+        {
+          "path": "product/list",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        },
+        {
+          "path": "product/detail",
+          "style": {
+            "navigationBarTitleText": "商品详情"
+          }
+        },
+        {
+          "path": "order/create",
+          "style": {
+            "navigationBarTitleText": "确认下单"
+          }
+        },
+        {
+          "path": "order/detail",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        },
+        {
+          "path": "order/pay",
+          "style": {
+            "navigationBarTitleText": "支付订单"
+          }
+        },
+        {
+          "path": "chat/session",
+          "style": {
+            "navigationBarTitleText": "消息"
+          }
+        },
+        {
+          "path": "chat/room",
+          "style": {
+            "navigationBarTitleText": "聊天"
+          }
+        },
+        {
+          "path": "employee/auth",
+          "style": {
+            "navigationBarTitleText": "员工认证"
+          }
+        },
+        {
+          "path": "employee/task-pool",
+          "style": {
+            "navigationBarTitleText": "任务池"
+          }
+        },
+        {
+          "path": "my/employee-center",
+          "style": {
+            "navigationBarTitleText": "接单中心"
+          }
+        },
+        {
+          "path": "my/refund-list",
+          "style": {
+            "navigationBarTitleText": "退款记录"
+          }
+        },
+        {
+          "path": "my/settings",
+          "style": {
+            "navigationBarTitleText": "设置"
+          }
+        },
+        {
+          "path": "my/about",
+          "style": {
+            "navigationBarTitleText": "关于我们"
+          }
+        }
       ]
     }
   ],
   "preloadRule": {
     "pages/index/index": {
       "network": "all",
-      "packages": ["subpkg"]
+      "packages": [
+        "subpkg"
+      ]
     }
   },
   "tabBar": {
@@ -78,7 +160,7 @@
   },
   "globalStyle": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "{CLIENT_NAME}",
+    "navigationBarTitleText": "自主接单平台",
     "navigationBarBackgroundColor": "#2979FF",
     "backgroundColor": "#F5F6FA"
   }

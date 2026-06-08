@@ -1,4 +1,4 @@
-﻿import { HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { ErrorCode } from './error-codes';
 
 export class BizException extends HttpException {
